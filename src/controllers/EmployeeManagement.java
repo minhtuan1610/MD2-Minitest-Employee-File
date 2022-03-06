@@ -8,6 +8,8 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 public class EmployeeManagement {
+    public static LinkedList<Employee> employeesList;
+
     //  Hiển thị danh sách nhân viên
     public static void displayEmployeeInfo(LinkedList<Employee> employeesListClient) {
         for (Employee i : employeesListClient
