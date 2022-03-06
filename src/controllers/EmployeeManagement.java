@@ -3,12 +3,16 @@ package controllers;
 import models.Employee;
 import models.FullTimeEmployee;
 import models.PartTimeEmployee;
+import storages.EmployeeData;
+import storages.EmployeeFromBinaryFile;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Scanner;
 
 public class EmployeeManagement {
-    public static LinkedList<Employee> employeesList;
+    public static EmployeeData employeeData = new EmployeeFromBinaryFile();
+    public static LinkedList<Employee> employeesList = employeeData.readFile();
 
     //  Hiển thị danh sách nhân viên
     public static void displayEmployeeInfo(LinkedList<Employee> employeesListClient) {
@@ -75,11 +79,21 @@ public class EmployeeManagement {
     public static void addNewFullTimeStaff(LinkedList<Employee> employeesListClient) {
         Employee newFullTimeStaff = setNewFullTimeStaff();
         employeesListClient.add(newFullTimeStaff);
+        try {
+            employeeData.writeFile(employeesListClient);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     //  Thêm mới nhân viên Part-time
     public static void addNewPartTimeStaff(LinkedList<Employee> employeesListClient) {
         Employee newPartTimeStaff = setNewFullTimeStaff();
         employeesListClient.add(newPartTimeStaff);
+        try {
+            employeeData.writeFile(employeesListClient);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
