@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Client {
-
+    public static LinkedList<Employee> employeesListClient = EmployeeManagement.employeesList;
 
     public static void main(String[] args) {
         final int MENU_CHOICE = -1;
@@ -26,10 +26,13 @@ public class Client {
             choice = scanner.nextInt();
             switch (choice) {
                 case 1: //  Hiển thị danh sách nhân viên
+                    EmployeeManagement.displayEmployeeInfo(employeesListClient);
                     break;
                 case 2: //  Thêm nhân viên Full-time
+                    EmployeeManagement.addNewFullTimeStaff(employeesListClient);
                     break;
                 case 3: //  Thêm nhân viên Part-time
+                    EmployeeManagement.addNewPartTimeStaff(employeesListClient);
                     break;
                 case 4: //  Sửa thông tin nhân viên
                     break;

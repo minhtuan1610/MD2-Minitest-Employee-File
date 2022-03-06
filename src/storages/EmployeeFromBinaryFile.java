@@ -3,6 +3,7 @@ package storages;
 import models.Employee;
 
 import java.io.*;
+import java.io.IOException;
 import java.util.LinkedList;
 
 public class EmployeeFromBinaryFile implements EmployeeData {
@@ -17,10 +18,12 @@ public class EmployeeFromBinaryFile implements EmployeeData {
             fis.close();
             ois.close();
             return employeesList;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return null;
+        return new LinkedList<>();
     }
 
     @Override
@@ -31,12 +34,12 @@ public class EmployeeFromBinaryFile implements EmployeeData {
             fos = new FileOutputStream("src/storages/employee.dat");
             oos = new ObjectOutputStream(fos);
             oos.writeObject(linkedList);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
             oos.close();
             fos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
     }
 }
