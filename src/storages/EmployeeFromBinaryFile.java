@@ -7,11 +7,12 @@ import java.io.IOException;
 import java.util.LinkedList;
 
 public class EmployeeFromBinaryFile implements EmployeeData {
+    public static final String SAVE_PATH = "src/storages/employee.dat";
+
     @Override
     public LinkedList<Employee> readFile() {
-        File file = new File("src/storages/employee.dat");
         try {
-            FileInputStream fis = new FileInputStream(file);
+            FileInputStream fis = new FileInputStream(SAVE_PATH);
             ObjectInputStream ois = new ObjectInputStream(fis);
             Object result = ois.readObject();
             LinkedList<Employee> employeesList = (LinkedList<Employee>) result;
@@ -19,7 +20,7 @@ public class EmployeeFromBinaryFile implements EmployeeData {
             ois.close();
             return employeesList;
         } catch (FileNotFoundException e) {
-            System.err.println("Ban chua tao file");
+            System.err.println("Bạn chưa tạo file");
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -31,7 +32,7 @@ public class EmployeeFromBinaryFile implements EmployeeData {
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
         try {
-            fos = new FileOutputStream("src/storages/employee.dat");
+            fos = new FileOutputStream(SAVE_PATH);
             oos = new ObjectOutputStream(fos);
             oos.writeObject(linkedList);
             oos.close();
@@ -39,7 +40,7 @@ public class EmployeeFromBinaryFile implements EmployeeData {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Lỗi ghi file");
         }
     }
 }
