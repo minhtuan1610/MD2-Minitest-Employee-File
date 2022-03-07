@@ -88,7 +88,7 @@ public class EmployeeManagement {
 
     //  Thêm mới nhân viên Part-time
     public static void addNewPartTimeStaff(LinkedList<Employee> employeesListClient) {
-        Employee newPartTimeStaff = setNewFullTimeStaff();
+        Employee newPartTimeStaff = setNewPartTimeStaff();
         employeesListClient.add(newPartTimeStaff);
         try {
             employeeData.writeFile(employeesListClient);

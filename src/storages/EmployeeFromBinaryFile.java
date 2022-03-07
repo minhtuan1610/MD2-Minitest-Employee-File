@@ -19,7 +19,7 @@ public class EmployeeFromBinaryFile implements EmployeeData {
             ois.close();
             return employeesList;
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.err.println("Ban chua tao file");
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
